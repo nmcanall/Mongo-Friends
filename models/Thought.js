@@ -2,7 +2,35 @@ const {Schema, model, Types} = require("mongoose");
 const moment = require("moment");
 
 const ReactionSchema = new Schema(
-
+    {
+        // Set a custom id to avoid confusion with parent thought _id
+        reactionId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId()
+        },
+        reactionBody: {
+            type: String, 
+            required: true,
+            maxlength: 280
+        },
+        username: {
+            type: String, 
+            required: [true, "You must include the username that created the thought."],
+            trim: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            // Reformat date on backend using Moment.js
+            get: (createdAtVal) => moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a")
+        }
+    },
+    // Allow the use of getters (allows Moment.js functionality)
+    {
+        toJSON: {
+            getters: true
+        }
+    }
 );
 
 const ThoughtSchema = new Schema(
@@ -21,7 +49,8 @@ const ThoughtSchema = new Schema(
         },
         username: {
             type: String,
-            required: [true, "You must include the username that created the thought."]
+            required: [true, "You must include the username that created the thought."],
+            trim: true
         },
         reactions: [ReactionSchema]
     },
