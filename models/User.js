@@ -13,7 +13,6 @@ const UserSchema = new Schema(
             required: "You must include an email.",
             unique: "Email is already taken.",
             trim: true,
-            validate: [validateEmail, 'Please fill a valid email address'],
             match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
         },
         thoughts: [{
