@@ -4,16 +4,16 @@ const UserSchema = new Schema(
     {
         username: {
             type: String,
-            required: "You must include a username.",
-            unique: "Username is already taken.",
+            required: [true, "You must include a username."],
+            unique: [true, "Username is already taken."],
             trim: true
         },
         email: {
             type: String,
-            required: "You must include an email.",
-            unique: "Email is already taken.",
+            required: [true, "You must include an email."],
+            unique: [true, "Email is already taken."],
             trim: true,
-            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'You must enter a valid email.']
         },
         thoughts: [{
             type: Schema.Types.ObjectId,
