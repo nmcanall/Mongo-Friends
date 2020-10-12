@@ -1,5 +1,4 @@
 const {User, Thought} = require("../models");
-console.log("in thought controller");
 
 const thoughtController = {
 
@@ -102,13 +101,6 @@ const thoughtController = {
                     {$pull: {thoughts: params.thoughtId}},
                     {new: true}
                 )
-            })
-            .then(dbUserData => {
-                if(!dbUserData) {
-                    res.status(404).json({message: "No user found with the given username."});
-                    return;
-                }
-                res.json(dbUserData);
             })
             .catch(err => {
                 console.log(err);
