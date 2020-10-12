@@ -15,7 +15,7 @@ router
 
 // Setup GET on, PUT and DELETE methods at /api/users/id
 router
-    .route("/:id")
+    .route("/:username")
     .get(getUserById)
     .put(updateUser)
     .delete(deleteUser);

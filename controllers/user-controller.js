@@ -18,9 +18,9 @@ const userController = {
             });
     },
 
-    // Get a single user by _id at api/users/:_id
+    // Get a single user by username at api/users/:username
     getUserById({params}, res) {
-        User.findOne({_id: params.id})
+        User.findOne({username: params.username})
             .populate({
                 path: "thought",
                 select: "-__v"
@@ -28,7 +28,7 @@ const userController = {
             .select("-__v")
             .then(dbUserData => {
                 if(!dbUserData) {
-                    res.status(404).json({message: "No user found with this id"});
+                    res.status(404).json({message: "No user found with this username"});
                     return;
                 }
                 res.json(dbUserData);
@@ -50,12 +50,12 @@ const userController = {
             });
     },
 
-    // Edit a user by _id at api/users/:_id
+    // Edit a user by username at api/users/:username
     updateUser({params, body}, res) {
-        User.findOneAndUpdate({_id: params.id}, body, {new: true, runValidators: true})
+        User.findOneAndUpdate({username: params.username}, body, {new: true, runValidators: true})
             .then(dbUserData => {
                 if(!dbUserData) {
-                    res.status(404).json({message: "No user found with this id"});
+                    res.status(404).json({message: "No user found with this username"});
                     return;
                 }
                 res.json(dbUserData);
@@ -66,12 +66,12 @@ const userController = {
             });
     },
 
-    // Delete a user by _id at api/users/:_id
+    // Delete a user by username at api/users/:username
     deleteUser({params}, res) {
-        User.findOneAndDelete({_id: params.id})
+        User.findOneAndDelete({username: params.username})
             .then(dbUserData => {
                 if(!dbUserData) {
-                    res.status(404).json({message: "No user found with this id"});
+                    res.status(404).json({message: "No user found with this username"});
                     return;
                 }
                 res.json(dbUserData);
