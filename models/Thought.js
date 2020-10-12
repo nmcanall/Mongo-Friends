@@ -19,14 +19,9 @@ const ThoughtSchema = new Schema(
             // Reformat date with Moment.js
             get: (createdAtVal) => moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a")
         },
-        // I took this out so the username could be dynamically invoked based on the User's ID in params
-        // username: {
-        //     type: String,
-        //     required: [true, "You must include the username that created the thought."]
-        // },
         username: {
-            type: Schema.Types.ObjectId,
-            ref: "User"
+            type: String,
+            required: [true, "You must include the username that created the thought."]
         },
         reactions: [ReactionSchema]
     },
