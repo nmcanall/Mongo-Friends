@@ -13,6 +13,7 @@ const ReactionSchema = new Schema(
             required: true,
             maxlength: 280
         },
+        // Username is not validated, so a guest is authorized to leave a reaction
         username: {
             type: String, 
             required: [true, "You must include the username that created the thought."],

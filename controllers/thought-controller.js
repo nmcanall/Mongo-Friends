@@ -25,7 +25,7 @@ const thoughtController = {
             });
     },
 
-    // Create a new thought at api/thoughts/username/
+    // Create a new thought at api/thoughts/:username/
     addThought({params, body}, res) {
         // Add the appropriate username to the body based on input from the URL query
         body.username = params.username;
@@ -49,6 +49,27 @@ const thoughtController = {
                         console.log(err);
                         res.json(err);
                     });
+            })
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
+
+    // Add a reaction at api/thoughts/:thoughtId/reactions
+    addReaction({params, body}, res) {
+        console.log(body);
+        Thought.findOneAndUpdate(
+            {_id: params.thoughtId},
+            {$push: {reactions: body}},
+            {new: true, runValidators: true}
+        )
+            .then(dbThoughtData => {
+                if(!dbThoughtData) {
+                    res.status(404).json({message: "No thought found with this id!"});
+                    return;
+                }
+                res.json(dbThoughtData);
             })
             .catch(err => {
                 console.log(err);
@@ -88,6 +109,22 @@ const thoughtController = {
                     return;
                 }
                 res.json(dbUserData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.json(err);
+            });
+    },
+
+    // Delete a reaction at api/thoughts/:thoughtId/:reactionId
+    deleteReaction({params}, res) {
+        Thought.findOneAndUpdate(
+            {_id: params.thoughtId},
+            {$pull: {reactions: {reactionId: params.reactionId}}},
+            {new: true}
+        )
+            .then(dbThoughtData => {
+                res.json(dbThoughtData);
             })
             .catch(err => {
                 console.log(err);
