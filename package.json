@@ -1,0 +1,25 @@
+{
+  "name": "mongo-friends",
+  "version": "1.0.0",
+  "description": "MongoDB based social media app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmcanall/Mongo-Friends.git"
+  },
+  "author": "Nathan McAnally",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmcanall/Mongo-Friends/issues"
+  },
+  "homepage": "https://github.com/nmcanall/Mongo-Friends#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.9"
+  }
+}
