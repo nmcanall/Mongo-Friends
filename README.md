@@ -4,7 +4,7 @@
 
 ## Description
 
-Mongo Friends is the backend for a social media app that allows users to create thoughts, make reactions to those thoughts, and keep track of friends.  The friend's list verifies the user exists before adding, and thoughts can only be created by verified users.  Reactions, on the otherhand, may be made by anyone, including guests. 
+Mongo Friends is the backend for a social media app that allows users to create thoughts, make reactions to those thoughts, and keep track of friends.  The friend's list verifies the user exists before adding, and thoughts can only be created by verified users.  Reactions, on the otherhand, may be made by anyone, including guests. See the YouTube walkthrough [here](https://youtu.be/cRreUsWdLy0).
 
 ## Table of Contents
 
