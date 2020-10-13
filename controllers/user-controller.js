@@ -40,7 +40,7 @@ const userController = {
 
     },
 
-    // Post a new user at api/users/:username
+    // Post a new user at api/users/
     createUser({body}, res) {
         User.create(body)
             .then(dbUserData => res.json(dbUserData))
